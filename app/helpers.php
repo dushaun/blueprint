@@ -157,3 +157,12 @@ Form::macro('fieldAttributes', function ($name, $attributes = array())
 
     return array_merge(['id' => 'id-field-' . $name], $attributes);
 });
+
+Form::macro('uploadFile', function ($name, $label = null)
+{
+    $name = str_replace('[]', '', $name);
+
+    $element = Form::file($name);
+
+    return Form::fieldWrapper($name, $label, $element);
+});

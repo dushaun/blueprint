@@ -12,15 +12,21 @@ class ProjectsController extends Controller
      * @var ProjectEloquentInterface
      */
     protected $projects;
+    /**
+     * @var FileUploadController
+     */
+    protected $uploads;
 
     /**
      * ProjectsController constructor.
      *
      * @param ProjectEloquentInterface $projects
+     * @param FileUploadController $uploads
      */
-    public function __construct(ProjectEloquentInterface $projects)
+    public function __construct(ProjectEloquentInterface $projects, FileUploadController $uploads)
     {
         $this->projects = $projects;
+        $this->uploads = $uploads;
     }
 
     /**
@@ -66,9 +72,10 @@ class ProjectsController extends Controller
      */
     public function show($id)
     {
-        app()->abort(404, 'Not implemented');
+        $project = $this->projects->find($id);
+        $files = $this->uploads->show($id);
 
-        return view('projects.show');
+        return view('projects.show', compact('project', 'files'));
     }
 
     /**
