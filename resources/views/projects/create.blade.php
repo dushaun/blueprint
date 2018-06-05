@@ -6,7 +6,7 @@
 
 @section('content')
 
-    {!! Form::open(array('route' => ['projects.store'])) !!}
+    {!! Form::open(['route' => ['projects.store']]) !!}
 
     @include('projects.partials.form')
 

@@ -7,3 +7,8 @@ Route::get('/', function () {
 });
 
 Route::resource('projects', 'ProjectsController');
+Route::name('uploads.')->group(function () {
+    Route::get('uploads', 'FileUploadController@index')->name('index');
+    Route::post('uploads', 'FileUploadController@store')->name('store');
+    Route::post('uploads/download', 'FileUploadController@download')->name('download');
+});
